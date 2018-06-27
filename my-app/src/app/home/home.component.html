@@ -29,59 +29,97 @@
 <!-- </head>  -->
 
 <body>
-
+    <!-- <div class="container-contact100">
+        <div class="wrap-contact100" style="height: 550px;"> -->
 
     <div class="container-contact100" style="padding-top: 50px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px;">
         <div class="wrap-contact100">
-            <form class="contact100-form validate-form">
+            <form *ngIf="checknim" class="contact100-form validate-form" #nimForm="ngForm" novalidate>
+                <span class="contact100-form-title">
+                            Login
+                        </span>
+                <label class="label-input100" for="nim" style="font-size: 18px;">Your Student ID *</label>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input id="nim" class="input100" type="text" name="nim" placeholder="G641500XX" [(ngModel)]="nim">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="container-contact100-form-btn">
+                    <button class="contact100-form-btn" (click)="show()">
+                                Next
+                            </button>
+                </div>
+            </form>
+            <!-- Membuat Laporan -->
+            <form *ngIf="showform" class="contact100-form validate-form" #laporanForm="ngForm" novalidate>
                 <span class="contact100-form-title">
 					Laporin!
 				</span>
+                <!-- <form class="form"> -->
 
                 <label class="label-input100" for="first-name">Name *</label>
-                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Type first name">
-                    <input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">
+                <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [(ngModel)]="pelaporData.nama" id="first-name" class="input100" type="text" name="nama" placeholder={{pelaporData.nama}}>
                     <span class="focus-input100"></span>
                 </div>
-                <div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
-                    <input class="input100" type="text" name="last-name" placeholder="Last name">
+                <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [(ngModel)]="pelaporData.nama" id="first-name" class="input100" type="text" name="nama" placeholder="nama">
                     <span class="focus-input100"></span>
                 </div>
 
                 <label class="label-input100" for="nim">NIM *</label>
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input id="nim" class="input100" type="text" name="nim" placeholder="Eg. G64150062">
+                <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [(ngModel)]="pelaporData.nim" id="nim" class="input100" type="text" name="nim" placeholder={{pelaporData.nim}}>
+                    <span class="focus-input100"></span>
+                </div>
+                <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [(ngModel)]="pelaporData.nim" id="nim" class="input100" type="text" name="nim" placeholder="G641500XX">
                     <span class="focus-input100"></span>
                 </div>
 
                 <label class="label-input100" for="email">Email *</label>
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">
+                <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [(ngModel)]="pelaporData.email" id="email" class="input100" type="text" name="email" placeholder={{pelaporData.email}}>
+                    <span class="focus-input100"></span>
+                </div>
+                <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [(ngModel)]="pelaporData.email" id="email" class="input100" type="text" name="email" placeholder=ipb.ac.id@gmail.com>
                     <span class="focus-input100"></span>
                 </div>
 
                 <label class="label-input100" for="phone">Phone Number</label>
-                <div class="wrap-input100">
-                    <input id="phone" class="input100" type="text" name="phone" placeholder="Eg. +62 857 1972802">
+                <div *ngIf="registered" class="wrap-input100">
+                    <input [(ngModel)]="pelaporData.no_hp" id="phone" class="input100" type="text" name="phone" placeholder="{{pelaporData.no_hp}}">
+                    <span class="focus-input100"></span>
+                </div>
+                <div *ngIf="registered!=true" class="wrap-input100">
+                    <input [(ngModel)]="pelaporData.no_hp" id="phone" class="input100" type="text" name="phone" placeholder="0813-0000-0000">
                     <span class="focus-input100"></span>
                 </div>
 
-                <label class="label-input100" for="phone">Location</label>
+                <label class="label-input100" for="location">Location</label>
                 <div class="wrap-input100">
-                    <input id="location" class="input100" type="text" name="location" placeholder="Eg. +62 857 1972802">
+                    <input [(ngModel)]="laporanData.tempat" id="location" class="input100" type="text" name="location" placeholder="Rk u 2.02">
+                    <span class="focus-input100"></span>
+                </div>
+                <label class="label-input100" for="jenis_laporan">Jenis Laporan</label>
+                <div class="wrap-input100">
+                    <input [(ngModel)]="laporanData.jenis_laporan" id="location" class="input100" type="text" name="jenis_laporan" placeholder="darurat">
                     <span class="focus-input100"></span>
                 </div>
 
                 <label class="label-input100" for="message">Message *</label>
                 <div class="wrap-input100 validate-input" data-validate="Message is required">
-                    <textarea id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
+                    <textarea [(ngModel)]="laporanData.deskripsi" id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
                     <span class="focus-input100"></span>
                 </div>
 
-                <button class="label-input100" for="upload" style="border-bottom: 1px solid #e6e6e6;">Upload Picture</button>
+
+                <label class="label-input100" for="upload" style="border-bottom: 1px solid #e6e6e6;">Upload Picture</label>
+                <input type="file" #image accept="image/*" (change)="handleFileInput($event)">
+                <!-- </form> -->
 
                 <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn">
+                    <button (click)="buatlaporan()" class="contact100-form-btn">
 						Send Message
 					</button>
                 </div>
