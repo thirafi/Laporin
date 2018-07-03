@@ -28,195 +28,209 @@
 <!--===============================================================================================-->
 <!-- </head>  -->
 
-<body>
-    <!-- <div class="container-contact100">
+<!-- <div class="container-contact100">
         <div class="wrap-contact100" style="height: 550px;"> -->
 
-    <div class="container-contact100" style="padding-top: 50px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px;">
-        <div class="wrap-contact100">
-            <form *ngIf="checknim" class="contact100-form validate-form" #nimForm="ngForm" novalidate>
-                <span class="contact100-form-title">
+<div class="container-contact100" style="padding-top: 50px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px;">
+    <div class="wrap-contact100">
+        <form *ngIf="checknim" class="contact100-form validate-form" #nimForm="ngForm" novalidate>
+            <span class="contact100-form-title">
                             Login
                         </span>
-                <label class="label-input100" for="nim" style="font-size: 18px;">Your Student ID *</label>
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input id="nim" class="input100" type="text" name="nim" placeholder="G641500XX" [(ngModel)]="nim">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn" (click)="show()">
+            <label class="label-input100" for="nim" style="font-size: 18px;">Your Student ID *</label>
+            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input id="nim" class="input100" type="text" name="nim" placeholder="G641500XX" [(ngModel)]="nim">
+                <span class="focus-input100"></span>
+            </div>
+            <div class="container-contact100-form-btn">
+                <button class="contact100-form-btn" (click)="show()">
                                 Next
                             </button>
-                </div>
-            </form>
-            <!-- Membuat Laporan -->
-            <form *ngIf="showform" class="contact100-form validate-form" #laporanForm="ngForm" novalidate>
-                <span class="contact100-form-title">
+            </div>
+        </form>
+        <!-- Membuat notifikasi telah berhasil -->
+        <form *ngIf="notif" class="contact100-form validate-form" #nimForm="ngForm" novalidate>
+            <span class="contact100-form-title">
+                            Terimkasih
+                        </span>
+            <label class="label-input100" for="nim" style="font-size: 18px;text-align: center;">Terimakasih Anda telah melaporkan kerusakan, kejadian, atau kesalahan operasi <br> tim kami akan secepatnya menindak lanjuti laporan ini</label>
+            <!-- <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input id="nim" class="input100" type="text" name="nim" placeholder="G641500XX" [(ngModel)]="nim">
+                <span class="focus-input100"></span>
+            </div> -->
+            <div class="container-contact100-form-btn">
+                <button class="contact100-form-btn" (click)="back()">
+                                Back
+                            </button>
+            </div>
+        </form>
+        <!-- Membuat Laporan -->
+        <form *ngIf="showform" class="contact100-form validate-form" #laporanForm="ngForm" novalidate>
+            <span class="contact100-form-title">
 					Laporin!
 				</span>
-                <!-- <form class="form"> -->
+            <!-- <form class="form"> -->
 
-                <label class="label-input100" for="first-name">Name *</label>
-                <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input [(ngModel)]="pelaporData.nama" id="first-name" class="input100" type="text" name="nama" placeholder={{pelaporData.nama}}>
-                    <span class="focus-input100"></span>
-                </div>
-                <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input [(ngModel)]="pelaporData.nama" id="first-name" class="input100" type="text" name="nama" placeholder="nama">
-                    <span class="focus-input100"></span>
-                </div>
+            <label class="label-input100" for="first-name">Name *</label>
+            <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="pelaporData.nama" id="first-name" class="input100" type="text" name="nama" placeholder={{pelaporData.nama}}>
+                <span class="focus-input100"></span>
+            </div>
+            <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="pelaporData.nama" id="first-name" class="input100" type="text" name="nama" placeholder="nama">
+                <span class="focus-input100"></span>
+            </div>
 
-                <label class="label-input100" for="nim">NIM *</label>
-                <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input [(ngModel)]="pelaporData.nim" id="nim" class="input100" type="text" name="nim" placeholder={{pelaporData.nim}}>
-                    <span class="focus-input100"></span>
-                </div>
-                <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input [(ngModel)]="pelaporData.nim" id="nim" class="input100" type="text" name="nim" placeholder="G641500XX">
-                    <span class="focus-input100"></span>
-                </div>
+            <label class="label-input100" for="nim">NIM *</label>
+            <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="pelaporData.nim" id="nim" class="input100" type="text" name="nim" placeholder={{pelaporData.nim}}>
+                <span class="focus-input100"></span>
+            </div>
+            <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="pelaporData.nim" id="nim" class="input100" type="text" name="nim" placeholder="G641500XX">
+                <span class="focus-input100"></span>
+            </div>
 
-                <label class="label-input100" for="email">Email *</label>
-                <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input [(ngModel)]="pelaporData.email" id="email" class="input100" type="text" name="email" placeholder={{pelaporData.email}}>
-                    <span class="focus-input100"></span>
-                </div>
-                <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input [(ngModel)]="pelaporData.email" id="email" class="input100" type="text" name="email" placeholder=ipb.ac.id@gmail.com>
-                    <span class="focus-input100"></span>
-                </div>
+            <label class="label-input100" for="email">Email *</label>
+            <div *ngIf="registered" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="pelaporData.email" id="email" class="input100" type="text" name="email" placeholder={{pelaporData.email}}>
+                <span class="focus-input100"></span>
+            </div>
+            <div *ngIf="registered!=true" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="pelaporData.email" id="email" class="input100" type="text" name="email" placeholder=ipb.ac.id@gmail.com>
+                <span class="focus-input100"></span>
+            </div>
 
-                <label class="label-input100" for="phone">Phone Number</label>
-                <div *ngIf="registered" class="wrap-input100">
-                    <input [(ngModel)]="pelaporData.no_hp" id="phone" class="input100" type="text" name="phone" placeholder="{{pelaporData.no_hp}}">
-                    <span class="focus-input100"></span>
-                </div>
-                <div *ngIf="registered!=true" class="wrap-input100">
-                    <input [(ngModel)]="pelaporData.no_hp" id="phone" class="input100" type="text" name="phone" placeholder="0813-0000-0000">
-                    <span class="focus-input100"></span>
-                </div>
+            <label class="label-input100" for="phone">Phone Number</label>
+            <div *ngIf="registered" class="wrap-input100">
+                <input [(ngModel)]="pelaporData.no_hp" id="phone" class="input100" type="text" name="phone" placeholder="{{pelaporData.no_hp}}">
+                <span class="focus-input100"></span>
+            </div>
+            <div *ngIf="registered!=true" class="wrap-input100">
+                <input [(ngModel)]="pelaporData.no_hp" id="phone" class="input100" type="text" name="phone" placeholder="0813-0000-0000">
+                <span class="focus-input100"></span>
+            </div>
 
-                <label class="label-input100" for="location">Location</label>
-                <div class="wrap-input100">
-                    <input [(ngModel)]="laporanData.tempat" id="location" class="input100" type="text" name="location" placeholder="Rk u 2.02">
-                    <span class="focus-input100"></span>
-                </div>
-                <label class="label-input100" for="jenis_laporan">Jenis Laporan</label>
-                <div class="wrap-input100">
-                    <input [(ngModel)]="laporanData.jenis_laporan" id="location" class="input100" type="text" name="jenis_laporan" placeholder="darurat">
-                    <span class="focus-input100"></span>
-                </div>
+            <label class="label-input100" for="location">Location</label>
+            <div class="wrap-input100">
+                <input [(ngModel)]="laporanData.tempat" id="location" class="input100" type="text" name="location" placeholder="Rk u 2.02">
+                <span class="focus-input100"></span>
+            </div>
+            <label class="label-input100" for="jenis_laporan">Jenis Laporan</label>
+            <div class="wrap-input100">
+                <input [(ngModel)]="laporanData.jenis_laporan" id="location" class="input100" type="text" name="jenis_laporan" placeholder="darurat">
+                <span class="focus-input100"></span>
+            </div>
 
-                <label class="label-input100" for="message">Message *</label>
-                <div class="wrap-input100 validate-input" data-validate="Message is required">
-                    <textarea [(ngModel)]="laporanData.deskripsi" id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
-                    <span class="focus-input100"></span>
-                </div>
+            <label class="label-input100" for="message">Message *</label>
+            <div class="wrap-input100 validate-input" data-validate="Message is required">
+                <textarea [(ngModel)]="laporanData.deskripsi" id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
+                <span class="focus-input100"></span>
+            </div>
 
 
-                <label class="label-input100" for="upload" style="border-bottom: 1px solid #e6e6e6;">Upload Picture</label>
-                <input type="file" #image accept="image/*" (change)="handleFileInput($event)">
-                <!-- </form> -->
+            <label class="label-input100" for="upload" style="border-bottom: 1px solid #e6e6e6;">Upload Picture</label>
+            <input type="file" #image accept="image/*" (change)="handleFileInput($event)">
+            <!-- </form> -->
 
-                <div class="container-contact100-form-btn">
-                    <button (click)="buatlaporan()" class="contact100-form-btn">
+            <div class="container-contact100-form-btn">
+                <button (click)="notifikasi()" class="contact100-form-btn">
 						Send Message
 					</button>
-                </div>
-            </form>
+            </div>
+        </form>
 
-            <div class="contact100-more flex-col-c-m" style="background-image: url('assets/images/bg-01.jpg') ;">
-                <span class="judul-information">
+        <div class="contact100-more flex-col-c-m" style="background-image: url('assets/images/bg-01.jpg') ;">
+            <span class="judul-information">
 					Information
 				</span>
-                <div class="flex-w size1 p-b-47">
-                    <div class="txt1 p-r-25">
-                        <span class="lnr lnr-map-marker"></span>
-                    </div>
+            <div class="flex-w size1 p-b-47">
+                <div class="txt1 p-r-25">
+                    <span class="lnr lnr-map-marker"></span>
+                </div>
 
-                    <div class="flex-col size2">
-                        <span class="txt1 p-b-20">
+                <div class="flex-col size2">
+                    <span class="txt1 p-b-20">
 							Address
 						</span>
 
-                        <span class="txt2">
+                    <span class="txt2">
 							Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US
 						</span>
-                    </div>
+                </div>
+            </div>
+
+            <div class="dis-flex size1 p-b-47">
+                <div class="txt1 p-r-25">
+                    <span class="lnr lnr-phone-handset"></span>
                 </div>
 
-                <div class="dis-flex size1 p-b-47">
-                    <div class="txt1 p-r-25">
-                        <span class="lnr lnr-phone-handset"></span>
-                    </div>
-
-                    <div class="flex-col size2">
-                        <span class="txt1 p-b-20">
+                <div class="flex-col size2">
+                    <span class="txt1 p-b-20">
 							Contact
 						</span>
 
-                        <span class="txt3">
+                    <span class="txt3">
 							+1 800 1236879
 						</span>
-                    </div>
+                </div>
+            </div>
+
+            <div class="dis-flex size1 p-b-47">
+                <div class="txt1 p-r-25">
+                    <span class="lnr lnr-envelope"></span>
                 </div>
 
-                <div class="dis-flex size1 p-b-47">
-                    <div class="txt1 p-r-25">
-                        <span class="lnr lnr-envelope"></span>
-                    </div>
-
-                    <div class="flex-col size2">
-                        <span class="txt1 p-b-20">
+                <div class="flex-col size2">
+                    <span class="txt1 p-b-20">
 							Email
 						</span>
 
-                        <span class="txt3">
+                    <span class="txt3">
 							contact@example.com
 						</span>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
+<div id="dropDownSelect1"></div>
 
-    <div id="dropDownSelect1"></div>
+<!--===============================================================================================-->
+<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="assets/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="assets/vendor/bootstrap/js/popper.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="assets/vendor/select2/select2.min.js"></script>
+<script>
+    $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+</script>
+<!--===============================================================================================-->
+<script src="assets/vendor/daterangepicker/moment.min.js"></script>
+<script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="assets/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="assets/js/main.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-    <!--===============================================================================================-->
-    <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="assets/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="assets/vendor/bootstrap/js/popper.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="assets/vendor/select2/select2.min.js"></script>
-    <script>
-        $(".selection-2").select2({
-            minimumResultsForSearch: 20,
-            dropdownParent: $('#dropDownSelect1')
-        });
-    </script>
-    <!--===============================================================================================-->
-    <script src="assets/vendor/daterangepicker/moment.min.js"></script>
-    <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="assets/vendor/countdowntime/countdowntime.js"></script>
-    <!--===============================================================================================-->
-    <script src="assets/js/main.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+    gtag('config', 'UA-23581568-13');
+</script>
 
-        gtag('config', 'UA-23581568-13');
-    </script>
-</body>
 <!-- </html>   -->

@@ -13,6 +13,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { TableComponent } from './table/table.component';
 import { HttpClient } from 'selenium-webdriver/http';
 import { HttpModule } from '@angular/http';
+import { ListPelaporComponent } from './list-pelapor/list-pelapor.component';
+import { ListPetugasComponent } from './list-petugas/list-petugas.component';
+import { ListLaporanComponent } from './list-laporan/list-laporan.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { HttpModule } from '@angular/http';
     DashboardComponent,
     HomeComponent,
     PagenotfoundComponent,
-    TableComponent
+    TableComponent,
+    ListPelaporComponent,
+    ListPetugasComponent,
+    ListLaporanComponent
   ],
   imports: [
     BrowserModule,

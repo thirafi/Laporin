@@ -6,6 +6,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { patch } from 'webdriver-js-extender';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ListPelaporComponent } from './list-pelapor/list-pelapor.component';
+import { ListPetugasComponent } from './list-petugas/list-petugas.component';
+import { ListLaporanComponent } from './list-laporan/list-laporan.component';
 
 const routes: Routes = [
   {
@@ -28,6 +31,18 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'listPelapor',
+    component: ListPelaporComponent
+  },
+  {
+    path: 'listPetugas',
+    component: ListPetugasComponent
+  },
+  {
+    path: 'listLaporan',
+    component: ListLaporanComponent
   },
   {
     path: '**',

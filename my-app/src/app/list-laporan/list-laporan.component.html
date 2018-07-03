@@ -1,0 +1,285 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="black" data-active-color="danger">
+
+        <!--
+      Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+      Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a class="simple-text">
+         Laporin
+      </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="http://localhost:4200/dashboard">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost:4200/listLaporan">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Table Laporan</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:4200/listPetugas">
+                        <i class="ti-user"></i>
+                        <p>Data Petugas</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="http://localhost:4200/listPelapor">
+                        <i class="ti-user"></i>
+                        <p>Data Pelapor</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                    <a class="navbar-brand" href="http://localhost:4200/dashboard">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a (click)="logOut()">
+                                <i class="ti-settings"></i>
+                                <p> Log Out</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Total Laporan</h4>
+                                <!-- <p class="category">Here is a subtitle for this table</p> -->
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>No</th>
+                                        <th>Jenis Laporan</th>
+                                        <th>Pelapor </th>
+                                        <th>tempat</th>
+                                        <th>updatedAt</th>
+                                        <th>Foto</th>
+                                        <th>Diskripsi</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let lapor of laporanData; index as i">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{lapor.jenis_laporan}}</td>
+                                            <td>{{lapor.pelapor.nama}}</td>
+                                            <td>{{lapor.tempat}}</td>
+                                            <td>{{lapor.updatedAt|date: 'dd MMMM yyyy'}}</td>
+                                            <!-- Large modal -->
+                                            <td> <img src="{{lapor.foto}}" style="width: 30px;" /> </td>
+                                            <td>{{lapor.deskripsi}}</td>
+
+                                            <!-- <div class="form-group">
+                                                    <select class="form-control">
+                                                          <option>Belum di proses</option>
+                                                          <option>Sedang di proses</option>
+                                                          <option>Selesai</option>
+                                                        </select>
+                                                </div> -->
+                                            <!-- <li class="dropdown">
+                                                        <button class="contact100-form-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Dropdown button
+                                                          </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#">Notification 1</a></li>
+                                                            <li><a href="#">Notification 2</a></li>
+                                                            <li><a href="#">Notification 3</a></li>
+                                                            <li><a href="#">Notification 4</a></li>
+                                                            <li><a href="#">Another notification</a></li>
+                                                        </ul>
+                                                    </li> -->
+
+                                            <td *ngIf="lapor.status===2"> Belum di proses</td>
+                                            <td *ngIf="lapor.status===1"> Sedang di proses</td>
+                                            <td *ngIf="lapor.status===0">Selesai</td>
+                                            <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" (click)="modal(lapor)">Show</button>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal1" (click)="modal(lapor)">Edit</button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal2" (click)="modal(lapor)">Delete</button> </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                  Creative Tim
+                              </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                 Blog
+                              </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                  Licenses
+                              </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Laporan </h4>
+            </div>
+            <div class="modal-body">
+                <p> Jenis Laporan : {{dataLaporan.jenis_laporan}}</p>
+                <p> Nama Pelapor : {{dataLaporan.pelapor.nama}}</p>
+
+                <p> Tempat : {{dataLaporan.tempat}}</p>
+                <p> Tanggal : {{dataLaporan.createdAt|date: 'dd MMMM yyyy'}}</p>
+                <p> Deskripsi : {{dataLaporan.deskripsi}}</p>
+                <img src="{{dataLaporan.foto}}" style="height: 500px;align-content: center;" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Laporan </h4>
+            </div>
+            <form class="form-horizontal" #updateForm="ngForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Jenis Laporan:</label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="dataLaporan.jenis_laporan" name="jenis_laporan" type="text" class="form-control" id="jenis_laporan" placeholder="{{dataLaporan.jenis_laporan}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Tempat">Tempat:</label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="dataLaporan.tempat" name="tempat" type="text" class="form-control" id="Tempat" placeholder="{{dataLaporan.tempat}}">
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <label class="control-label col-sm-2" for="tgl">Tanggal:</label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="dataLaporan.createdAt" type="date" class="form-control" id="createdAt" name="createdAt" placeholder="{{dataLaporan.createdAt.split('T')[0]}}">
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Deskripsi">Deskripsi:</label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="dataLaporan.deskripsi" type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="{{dataLaporan.deskripsi}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="inlineFormCustomSelect">Status</label>
+                    <select [(ngModel)]="dataLaporan.status" [compareWith]="compareFn" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name="status ">
+                  <!-- <option selected value="2">Belum di proses </option>
+                  <option value="1">Sedang di proses</option>
+                  <option value="0">Selesai</option> -->
+                <option *ngFor="let o of statusdata" value="{{o.value}}">{{o.text}}</option> 
+                </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" data-dismiss="modal" (click)="update(dataLaporan)">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hapus Laporan</h4>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus laporan ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(dataLaporan)">Delete</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

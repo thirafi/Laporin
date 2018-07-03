@@ -1,0 +1,242 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="black" data-active-color="danger">
+
+        <!--
+    Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+    Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+  -->
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a class="simple-text">
+       Laporin
+    </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="http://localhost:4200/dashboard">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:4200/listLaporan">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Table Laporan</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost:4200/listPetugas">
+                        <i class="ti-user"></i>
+                        <p>Data Petugas</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="http://localhost:4200/listPelapor">
+                        <i class="ti-user"></i>
+                        <p>Data Pelapor</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar bar1"></span>
+                  <span class="icon-bar bar2"></span>
+                  <span class="icon-bar bar3"></span>
+              </button>
+                    <a class="navbar-brand" href="http://localhost:4200/dashboard">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a (click)="logOut()">
+                                <i class="ti-settings"></i>
+                                <p> Log Out</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+
+            <!-- Modal coba coba -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Total Laporan</h4>
+                                <!-- <p class="category">Here is a subtitle for this table</p> -->
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Kontak </th>
+                                        <th>jabatan</th>
+                                        <th>Email</th>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let petugas of dataPetugas; index as i">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{petugas.nama}}</td>
+                                            <td>{{petugas.no_hp}}</td>
+                                            <td>{{petugas.jabatan}}</td>
+                                            <td>{{petugas.email}}</td>
+                                            <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" (click)="modal(petugas)">Show</button>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal1" (click)="modal(petugas)">Edit</button>
+                                                <button *ngIf="tambah" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal2" (click)="modal(petugas)">Delete</button> </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                               Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Petugas </h4>
+            </div>
+            <div class="modal-body">
+                <p> Nama Petugas : {{petugasData.nama}}</p>
+                <p> Nomor Handphone : {{petugasData.no_hp}}</p>
+                <p> Jabatan : {{petugasData.jabatan}}</p>
+                <p> Email : {{petugasData.email}}</p>
+                <!-- <img src="{{petugasData.foto}}" style="height: 500px;align-content: center;" /> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Pelapor </h4>
+            </div>
+
+            <form class="form-horizontal" action="/action_page.php">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Nama Petugas : </label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="petugasData.nama" name="nama" type="text" class="form-control" id="nama" placeholder="{{petugasData.nama}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Tempat">Jabatan : </label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="petugasData.jabatan" name="jabatan" type="text" class="form-control" id="jabatan" placeholder="{{petugasData.jabatan}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tgl">Nomor Handphone : </label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="petugasData.no_hp" name="no_hp" type="number" class="form-control" id="no_hp" placeholder="{{petugasData.no_hp}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Deskripsi">Email : </label>
+                    <div class="col-sm-10">
+                        <input [(ngModel)]="petugasData.email" name="email" type="email" class="form-control" id="email" placeholder="{{petugasData.email}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" data-dismiss="modal" (click)="update(petugasData)">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hapus Laporan</h4>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus laporan ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(petugasData)">Delete</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   submitted: boolean;
   data: any;
   fileToUpload: File=null;
+  notif: boolean=false;
 
   constructor(
     public http: Http,
@@ -68,7 +69,14 @@ export class HomeComponent implements OnInit {
     this.fileToUpload = <File>event.target.files[0];
   
   }
-
+  notifikasi(){
+    this.checknim= false;
+    this.showform= false;
+    this.notif = true;
+  }
+  back(){
+    window.location.reload(true);
+  }
   buatlaporan(form : NgForm) {
     this.submitted = true;
     
@@ -106,6 +114,10 @@ export class HomeComponent implements OnInit {
       this.http.post("http://localhost:8000/laporan",this.laporanData).subscribe(data => {
         let response = data.json();
         console.log("ini berhasil 5",response);
+        this.checknim= false;
+this.showform= false;
+this.notif = true;
+    
       if (response.status == 200) {
         let user = response.data;
         console.log(user);
@@ -145,6 +157,10 @@ else{
     this.http.post("http://localhost:8000/laporan",this.laporanData).subscribe(data => {
       let response = data.json();
       console.log("ini berhasil 5",response);
+      this.checknim= false;
+this.showform= false;
+this.notif = true;
+    
     if (response.status == 200) {
       let user = response.data;
       console.log(user);
@@ -156,8 +172,7 @@ else{
   });
 });
 }
-   
-    
+
 }
 }
  // this.http.post("http://192.168.31.251:8080/pelapor", this.pelaporData,options).subscribe(data => {
