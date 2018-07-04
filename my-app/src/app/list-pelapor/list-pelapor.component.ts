@@ -4,6 +4,7 @@ import { Http, Headers , RequestOptions,HttpModule } from "@angular/http";
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { Location } from '@angular/common';
 
+
 @Component({
   selector: 'app-list-pelapor',
   templateUrl: './list-pelapor.component.html',
@@ -25,15 +26,14 @@ export class ListPelaporComponent implements OnInit {
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
   }
+
   this.ganti= localStorage.getItem("token");
     this.ganti = this.ganti.split("\"")[1];
     console.log("apa isi ganti", this.ganti);
     let headers = new Headers({'Authorization':'Basic ' + this.ganti });
-    // let headers = new Headers({'Content-Type':'application/json'});
-  // let headers = new Headers({'Authorization':'Basic YWRtaW46YWRtaW4xMjM='});
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.get("http://localhost:8000/pelapor",options).subscribe(data => {
+    this.http.get("http://lapor.apps.cs.ipb.ac.id/api/pelapor",options).subscribe(data => {
       let response = data.json();
       this.dataPelapor = response;
       console.log("sukses",this.dataPelapor);
@@ -55,7 +55,7 @@ export class ListPelaporComponent implements OnInit {
     let headers = new Headers({'Authorization':'Basic ' + this.ganti , 'Content-Type':'application/json' });
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.put("http://localhost:8000/pelapor/"+data.id,data,options).subscribe(data => {
+    this.http.put("http://lapor.apps.cs.ipb.ac.id/api/pelapor/"+data.id,data,options).subscribe(data => {
       let response = data.json();
       this.pelaporData = response;
       console.log("sukses edit",this.pelaporData);
@@ -72,7 +72,7 @@ export class ListPelaporComponent implements OnInit {
     let headers = new Headers({'Authorization':'Basic ' + this.ganti });
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.delete("http://localhost:8000/pelapor/"+data.id,options).subscribe(data => {
+    this.http.delete("http://lapor.apps.cs.ipb.ac.id/api/pelapor/"+data.id,options).subscribe(data => {
       let response = data.json();
       console.log("sukses delete",response);
     }, err => {     

@@ -10,9 +10,9 @@ import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 })
 export class ListLaporanComponent implements OnInit {
   ganti: string;
-  dataLaporan: {jenis_laporan?:string; deskripsi?: string; tempat?:string; foto?:string; pelapor?:any;}={};
+  dataLaporan: {jenis_laporan?:string; deskripsi?: string; tempat?:string; foto?:string; pelapor?:any;status?:number;createdAt?:any;}={};
   statusdata: { text: string; value: number; }[];
-  laporanData : {jenis_laporan?:string; deskripsi?: string; tempat?:string; foto?:string; pelapor?:any; status?:number;}={};
+  laporanData : {jenis_laporan?:string; deskripsi?: string; tempat?:string; foto?:string; pelapor?:any; status?:number;createdAt?:any;}={};
   pelapori : {id?: any;}={};
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +31,7 @@ export class ListLaporanComponent implements OnInit {
   // let headers = new Headers({'Authorization':'Basic YWRtaW46YWRtaW4xMjM='});
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.get("http://localhost:8000/laporan",options).subscribe(data => {
+    this.http.get("http://lapor.apps.cs.ipb.ac.id/api/laporan",options).subscribe(data => {
       let response = data.json();
       this.laporanData = response;
       console.log("sukses",this.laporanData);
@@ -67,7 +67,7 @@ export class ListLaporanComponent implements OnInit {
     let headers = new Headers({'Authorization':'Basic ' + this.ganti , 'Content-Type':'application/json' });
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.put("http://localhost:8000/laporan/"+data.id,data,options).subscribe(data => {
+    this.http.put("http://lapor.apps.cs.ipb.ac.id/api/laporan/"+data.id,data,options).subscribe(data => {
       let response = data.json();
       this.dataLaporan = response;
       console.log("sukses edit",this.dataLaporan);
@@ -84,7 +84,7 @@ export class ListLaporanComponent implements OnInit {
     let headers = new Headers({'Authorization':'Basic ' + this.ganti });
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.delete("http://localhost:8000/laporan/"+data.id,options).subscribe(data => {
+    this.http.delete("http://lapor.apps.cs.ipb.ac.id/api/laporan/"+data.id,options).subscribe(data => {
       let response = data.json();
       console.log("sukses delete",response);
       window.location.reload(true);

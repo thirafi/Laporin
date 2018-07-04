@@ -1,6 +1,6 @@
 <!-- <!DOCTYPE html>
 <html lang="en">
-<!-- <head>
+<!-<head>
 	<title>Contact V17</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> -->
@@ -43,15 +43,15 @@
                 <span class="focus-input100"></span>
             </div>
             <div class="container-contact100-form-btn">
-                <button class="contact100-form-btn" (click)="show()">
+                <button class="contact100-form-btn" type="submit" (click)="show()">
                                 Next
                             </button>
             </div>
         </form>
         <!-- Membuat notifikasi telah berhasil -->
-        <form *ngIf="notif" class="contact100-form validate-form" #nimForm="ngForm" novalidate>
+        <form *ngIf="notif" class="contact100-form validate-form" #notForm="ngForm" novalidate>
             <span class="contact100-form-title">
-                            Terimkasih
+                            Terimakasih
                         </span>
             <label class="label-input100" for="nim" style="font-size: 18px;text-align: center;">Terimakasih Anda telah melaporkan kerusakan, kejadian, atau kesalahan operasi <br> tim kami akan secepatnya menindak lanjuti laporan ini</label>
             <!-- <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
@@ -59,7 +59,7 @@
                 <span class="focus-input100"></span>
             </div> -->
             <div class="container-contact100-form-btn">
-                <button class="contact100-form-btn" (click)="back()">
+                <button class="contact100-form-btn" type="submit" (click)="back()">
                                 Back
                             </button>
             </div>
@@ -113,18 +113,26 @@
 
             <label class="label-input100" for="location">Location</label>
             <div class="wrap-input100">
-                <input [(ngModel)]="laporanData.tempat" id="location" class="input100" type="text" name="location" placeholder="Rk u 2.02">
+                <input [(ngModel)]="laporanData.tempat" id="location" class="input100" type="text" name="tempat" placeholder="Rk u 2.02">
                 <span class="focus-input100"></span>
             </div>
             <label class="label-input100" for="jenis_laporan">Jenis Laporan</label>
             <div class="wrap-input100">
-                <input [(ngModel)]="laporanData.jenis_laporan" id="location" class="input100" type="text" name="jenis_laporan" placeholder="darurat">
+                <!-- <input [(ngModel)]="laporanData.jenis_laporan" id="location" class="input100" type="text" name="jenis_laporan" placeholder="darurat"> -->
+                <div class="form-group">
+                    <select class="input100" id="jenis_laporan" [(ngModel)]="laporanData.jenis_laporan" name="jenis_laporan">
+                      <option value="Laporan Kejadian">Laporan Kejadian</option>
+                      <option value="Laporan Kerusakan">Laporan Kerusakan</option>
+                      <option value="Laporan Operasional">Laporan Operasional</option>
+                      <option value="Laporan Sampah">Laporan Sampah</option>
+                    </select>
+                </div>
                 <span class="focus-input100"></span>
             </div>
 
-            <label class="label-input100" for="message">Message *</label>
+            <label class="label-input100" for="message">Deskripsi Laporan *</label>
             <div class="wrap-input100 validate-input" data-validate="Message is required">
-                <textarea [(ngModel)]="laporanData.deskripsi" id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
+                <textarea [(ngModel)]="laporanData.deskripsi" id="message" class="input100" name="deskripsi" placeholder="Write us a message"></textarea>
                 <span class="focus-input100"></span>
             </div>
 
@@ -134,9 +142,12 @@
             <!-- </form> -->
 
             <div class="container-contact100-form-btn">
-                <button (click)="notifikasi()" class="contact100-form-btn">
+                <button *ngIf="loading!=true" (click)="buatlaporan()" type="submit" class="contact100-form-btn">
 						Send Message
-					</button>
+                    </button>
+                <button *ngIf="loading" class="buttonload">
+                        <i class="fa fa-spinner fa-spin"></i>Loading
+                </button>
             </div>
         </form>
 

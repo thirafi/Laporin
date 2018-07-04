@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   // user: { email?: string; password?: string } = {};
   pelaporData : {id?:any; nama?:string; nim?:string; no_hp?:number; email?:string; }={};
   nim: any;
+  loading:boolean=false;
   registered:boolean=false;
   showform: boolean=false;
   checknim: boolean=false;
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
   let options = new RequestOptions({headers: headers});
   console.log(options);
   console.log(this.nim);
-  this.http.get("http://localhost:8000/pelapor/nim/"+this.nim,options).subscribe(data => {
+  this.http.get("http://lapor.apps.cs.ipb.ac.id/api/pelapor/nim/"+this.nim,options).subscribe(data => {
     let response = data.json();
     this.pelaporData = data.json();
     this.registered= true;
@@ -89,7 +90,7 @@ export class HomeComponent implements OnInit {
       console.log(options);
       console.log(this.pelaporData);
      if(this.registered==false){
-      this.http.post("http://localhost:8000/pelapor",this.pelaporData,options).subscribe(data => {
+      this.http.post("http://lapor.apps.cs.ipb.ac.id/api/pelapor",this.pelaporData,options).subscribe(data => {
         let response = data.json();
         this.pelaporData = data.json();
         console.log("ini berhasil",this.pelaporData);
@@ -100,24 +101,20 @@ export class HomeComponent implements OnInit {
       // authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
       // let options1 = new RequestOptions({headers: headerss});
       console.log(" fd apaa", fd);
-     this.http.post("http://localhost:8000/uploadFile",fd).subscribe(data => {
+     this.http.post("http://lapor.apps.cs.ipb.ac.id/api/uploadFile",fd).subscribe(data => {
       let response = data.json();
       console.log("ini berhasil 2",response.fileDownloadUri);
         this.laporanData.foto= response.fileDownloadUri;
         this.pelapori.id = this.pelaporData.id;
         this.laporanData.pelapor = this.pelapori;
         console.log("ini berhasil 3",this.pelapori.id);
-
-        // this.laporanData.pelapor.id= "10";
-        // laporanyya.push({foto:response.fileDownloadUri,pelapor:{id:this.pelaporData.id}})
         console.log("ini benran berhasil",this.laporanData);
-      this.http.post("http://localhost:8000/laporan",this.laporanData).subscribe(data => {
+      this.http.post("http://lapor.apps.cs.ipb.ac.id/api/laporan",this.laporanData).subscribe(data => {
         let response = data.json();
         console.log("ini berhasil 5",response);
         this.checknim= false;
 this.showform= false;
 this.notif = true;
-    
       if (response.status == 200) {
         let user = response.data;
         console.log(user);
@@ -143,7 +140,8 @@ this.notif = true;
 else{
   const fd = new FormData();
   fd.append('file',this.fileToUpload,this.fileToUpload.name);
-  this.http.post("http://localhost:8000/uploadFile",fd).subscribe(data => {
+  console.log("baca lah yaaa",this.laporanData);
+  this.http.post("http://lapor.apps.cs.ipb.ac.id/api/uploadFile",fd).subscribe(data => {
     let response = data.json();
     console.log("ini berhasil 2",response.fileDownloadUri);
       this.laporanData.foto= response.fileDownloadUri;
@@ -154,13 +152,12 @@ else{
       // this.laporanData.pelapor.id= "10";
       // laporanyya.push({foto:response.fileDownloadUri,pelapor:{id:this.pelaporData.id}})
       console.log("ini benran berhasil",this.laporanData);
-    this.http.post("http://localhost:8000/laporan",this.laporanData).subscribe(data => {
+    this.http.post("http://lapor.apps.cs.ipb.ac.id/api/laporan",this.laporanData).subscribe(data => {
       let response = data.json();
       console.log("ini berhasil 5",response);
       this.checknim= false;
-this.showform= false;
-this.notif = true;
-    
+      this.showform= false;
+      this.notif = true;
     if (response.status == 200) {
       let user = response.data;
       console.log(user);
@@ -172,7 +169,7 @@ this.notif = true;
   });
 });
 }
-
+this.loading=true;
 }
 }
  // this.http.post("http://192.168.31.251:8080/pelapor", this.pelaporData,options).subscribe(data => {

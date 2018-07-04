@@ -16,6 +16,7 @@ import { HttpModule } from '@angular/http';
 import { ListPelaporComponent } from './list-pelapor/list-pelapor.component';
 import { ListPetugasComponent } from './list-petugas/list-petugas.component';
 import { ListLaporanComponent } from './list-laporan/list-laporan.component';
+import { LaporanService } from './laporan.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { ListLaporanComponent } from './list-laporan/list-laporan.component';
     HttpModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [LaporanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

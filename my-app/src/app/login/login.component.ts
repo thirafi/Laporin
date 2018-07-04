@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   // let headers = new Headers({'Authorization':'Basic YWRtaW46YWRtaW4xMjM='});
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.get("http://localhost:8000/login",options).subscribe(data => {
+    this.http.get("http://lapor.apps.cs.ipb.ac.id/api/login",options).subscribe(data => {
       let response = data.status;
       // localStorage.setItem( "currentUser",JSON.stringify( );
       localStorage.setItem("token", JSON.stringify(btoa(this.petugas.username + ':' +this.petugas.password)));

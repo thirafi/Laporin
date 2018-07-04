@@ -34,7 +34,7 @@ tambah:boolean=false;
   // let headers = new Headers({'Authorization':'Basic YWRtaW46YWRtaW4xMjM='});
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.get("http://localhost:8000/petugas",options).subscribe(data => {
+    this.http.get("http://lapor.apps.cs.ipb.ac.id/api/petugas",options).subscribe(data => {
       let response = data.json();
       this.dataPetugas = response;
       console.log("sukses",this.dataPetugas);
@@ -58,7 +58,7 @@ tambah:boolean=false;
     let headers = new Headers({'Authorization':'Basic ' + this.ganti , 'Content-Type':'application/json' });
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.put("http://localhost:8000/petugas/"+data.id,data,options).subscribe(data => {
+    this.http.put("http://lapor.apps.cs.ipb.ac.id/api/petugas/"+data.id,data,options).subscribe(data => {
       let response = data.json();
       this.petugasData = response;
       console.log("sukses edit",this.petugasData);
@@ -75,7 +75,7 @@ tambah:boolean=false;
     let headers = new Headers({'Authorization':'Basic ' + this.ganti });
     let options = new RequestOptions({headers: headers});
     console.log("header :",options);
-    this.http.delete("http://localhost:8000/petugas/"+data.id,options).subscribe(data => {
+    this.http.delete("http://lapor.apps.cs.ipb.ac.id/api/petugas/"+data.id,options).subscribe(data => {
       let response = data.json();
       console.log("sukses delete",response);
     }, err => {     

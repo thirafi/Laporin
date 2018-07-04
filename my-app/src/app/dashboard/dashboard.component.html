@@ -49,25 +49,25 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="http://localhost:4200/dashboard">
+                    <a href="http://lapor.apps.cs.ipb.ac.id/dashboard">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:4200/listLaporan">
+                    <a href="http://lapor.apps.cs.ipb.ac.id/listLaporan">
                         <i class="ti-view-list-alt"></i>
                         <p>Table Laporan</p>
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:4200/listPetugas">
+                    <a href="http://lapor.apps.cs.ipb.ac.id/listPetugas">
                         <i class="ti-user"></i>
                         <p>Data Petugas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:4200/listPelapor">
+                    <a href="http://lapor.apps.cs.ipb.ac.id/listPelapor">
                         <i class="ti-user"></i>
                         <p>Data Pelapor</p>
                     </a>
@@ -88,12 +88,12 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="http://localhost:4200/dashboard">Dashboard</a>
+                    <a class="navbar-brand" href="http://lapor.apps.cs.ipb.ac.id/dashboard">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li *ngIf="tambah">
-                            <a href="http://localhost:4200/register">
+                            <a href="http://lapor.apps.cs.ipb.ac.id/register">
                                 <i class="ti-user"></i>
                                 <p>Tambah Petugas</p>
                             </a>
@@ -148,7 +148,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="http://localhost:4200/listLaporan">
+                                        <a href="http://lapor.apps.cs.ipb.ac.id/listLaporan">
                                             <i class="ti-folder"></i> Open
                                         </a>
                                     </div>
@@ -175,7 +175,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="http://localhost:4200/listPetugas">
+                                        <a href="http://lapor.apps.cs.ipb.ac.id/listPetugas">
                                             <i class="ti-folder"></i> Open
                                         </a>
                                     </div>
@@ -202,7 +202,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="http://localhost:4200/listPelapor ">
+                                        <a href="http://lapor.apps.cs.ipb.ac.id/listPelapor ">
                                             <i class="ti-folder"></i> Open
                                         </a>
                                     </div>
@@ -222,7 +222,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Laporan Kejadian</p>
-                                            15
+                                            {{kejadian}}
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +249,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Laporan Kerusakan</p>
-                                            10
+                                            {{kerusakan}}
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +276,7 @@
                                     <div class="col-xs-8">
                                         <div class="numbers">
                                             <p>Laporan Operasional</p>
-                                            2
+                                            {{op}}
                                         </div>
                                     </div>
                                 </div>
@@ -303,7 +303,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Laporan Sampah</p>
-                                            3
+                                            {{sampah}}
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +330,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Selesai</p>
-                                            15
+                                            {{selesai}}
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +357,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Sedang di Proses</p>
-                                            15
+                                            {{progres}}
                                         </div>
                                     </div>
                                 </div>

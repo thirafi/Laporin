@@ -34,7 +34,7 @@ register(){
   let options = new RequestOptions({headers: headers});
   console.log(this.petugasData);
  
-  this.http.post("http://localhost:8000/petugas",this.petugasData,options).subscribe(data => {
+  this.http.post("http://lapor.apps.cs.ipb.ac.id/api/petugas",this.petugasData,options).subscribe(data => {
     let response = data.json();
     this.petugasData = data.json();
     // this.router.navigate(['/dashboard']);
